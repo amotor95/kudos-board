@@ -7,27 +7,45 @@ const router = express.Router()
 router.get('/', async (req, res) => {
     const searchQuery = req.query["searchQuery"]
     const filter = req.query["filter"]
+
     let results = null
+    let prismaQuery = {}
+    
     if (searchQuery) {
-        results = await prisma.board.findMany({
-            where: {
-                title: {
-                    contains: searchQuery,
-                },
-            },
-        })
-    } else {
-        results = await prisma.board.findMany()
+        prismaQuery["where"] = { "title": {"contains": searchQuery}}
     }
 
-    let filteredResults = []
     switch (filter) {
-        case "recent":
-            filteredResults = results.
+        // If all, no filter
+        case "all":
             break;
-    }
+        // If recent filter, grab 6 most recently created
+        case "recent":
+            // Create orderBy dict
+            prismaQuery["orderBy"] = {}
+            prismaQuery["orderBy"]["id"] = 'desc'
+            prismaQuery["take"] = 6
+            break;
+        // Otherwise, filtering by category
+        default:
+            // If no where dict yet, create one
+            prismaQuery["where"] = prismaQuery["where"] || {};
+            prismaQuery["where"]["category"] = {"equals": filter}
+            break;
+        }
+    results = await prisma.board.findMany(prismaQuery)
 
     res.status(200).json(results)
+})
+
+router.get('/:boardID', async (req, res) => {
+    const { boardID } = req.params
+    const board = await prisma.board.findUnique({
+        where: {
+            id: parseInt(boardID),
+        }
+    })
+    res.status(200).json(board)
 })
 
 router.post('/', async (req, res) => {
@@ -39,7 +57,6 @@ router.post('/', async (req, res) => {
             category,
             image,
             author,
-            num_upvotes,
         }
     })
     res.status(201).json(newBoard)

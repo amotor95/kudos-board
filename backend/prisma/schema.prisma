@@ -26,14 +26,13 @@ model Board {
   category String
   author String
   image String
-  num_upvotes Int
 }
 
 model Card {
   id Int @id @default(autoincrement())
   board_id Int
   message String
-  image String
+  gif String
   num_upvotes Int
   author String
 }

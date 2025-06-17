@@ -2,14 +2,16 @@ import { useState, useEffect } from 'react'
 import './BoardBox.css'
 import SearchBar from '../SearchBar/SearchBar'
 import BoardList from '../BoardList/BoardList'
-import AddBoard from '../AddBoard/AddBoard'
-import { fetchAllBoards, fetchBoardsBySearch } from '../utils/api_utils'
+import AddBoard from '../AddElement/AddBoard'
+import FilterBar from '../FilterBar/FilterBar'
+import { fetchBoardsBySearchAndFilter } from '../utils/api_utils'
 
 const BoardBox = () => {
     const [refresh, setRefresh] = useState(false)
     const [boards, setBoards] = useState({})
     const [boardOrder, setBoardOrder] = useState([])
     const [searchQuery, setSearchQuery] = useState("")
+    const [filter, setFilter] = useState("all")
 
 
     const processBoards = (newBoards) => {
@@ -23,22 +25,13 @@ const BoardBox = () => {
         setBoardOrder(newBoardOrder)
     }
 
-    const fetchAndProcessBoardsBySearch = async () => {
-        const newBoards = await fetchBoardsBySearch(searchQuery) 
-        processBoards(newBoards)
-    }
-
-    const fetchAndProcessAllBoards = async () => {
-        const newBoards = await fetchAllBoards()
+    const fetchAndProcessBoards = async () => {
+        const newBoards = await fetchBoardsBySearchAndFilter(searchQuery, filter) 
         processBoards(newBoards)
     }
 
     useEffect( () => {
-        if (!searchQuery) {
-            fetchAndProcessAllBoards()
-        } else {
-            fetchAndProcessBoardsBySearch()
-        }
+        fetchAndProcessBoards()
     }, [refresh])
 
     const triggerRefresh = () => {
@@ -51,22 +44,26 @@ const BoardBox = () => {
     }
 
     const handleSearch = () => {
-        if (!searchQuery) {
-            fetchAndProcessAllBoards()
-        } else {
-            fetchAndProcessBoardsBySearch()
-        }
+        fetchAndProcessBoards()
     }
 
     const handleClearSearch = () => {
         setSearchQuery("")
+        // Need this or else query race condition
         triggerRefresh()
-        fetchAndProcessAllBoards()
+        fetchAndProcessBoards()
+    }
+
+    const updateFilter = (mode) => {
+        setFilter(mode)
+        triggerRefresh()
+        fetchAndProcessBoards()
     }
 
     return (
         <div className='boardbox'>
             <SearchBar searchQuery={searchQuery} updateSearchQuery={updateSearchQuery} handleSearch={handleSearch} handleClearSearch={handleClearSearch}/>
+            <FilterBar updateFilter={updateFilter}/>
             <AddBoard triggerRefresh={triggerRefresh}/>
             <BoardList boards={boards} boardOrder={boardOrder} triggerRefresh={triggerRefresh}/>
         </div>

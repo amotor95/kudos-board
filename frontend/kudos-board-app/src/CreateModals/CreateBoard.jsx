@@ -8,7 +8,7 @@ const CreateBoard = ({ closeModal, triggerRefresh }) => {
     const [category, setCategory] = useState("")
     const [image, setImage] = useState("https://picsum.photos/200?random=" + Math.floor(Math.random()*10000))
     const [author, setAuthor] = useState("")
-    
+
     const addBoard = () => {
         if (!category || !title) {
             return;
@@ -51,7 +51,7 @@ const CreateBoard = ({ closeModal, triggerRefresh }) => {
             <input className='modal-input-text' value={author} onChange={(e) => setAuthor(e.target.value)}></input>
 
 
-            <button className='modal-input-create-button' onClick={() => addBoard()}>Create Board</button>
+            <button className='modal-input-button' onClick={() => addBoard()}>Create Board</button>
         </Modal>
     )
 }

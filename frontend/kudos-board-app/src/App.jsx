@@ -1,18 +1,22 @@
 import { useState } from 'react'
-import './App.css'
+import { BrowserRouter, Routes, Route} from 'react-router-dom'
 
-import CreateBoard from './CreateModals/CreateBoard'
-import BoardBox from './BoardBox/BoardBox'
+import MainPage from './MainPage/MainPage'
+import BoardPage from './BoardPage/BoardPage'
+
+
+import './App.css'
 
 function App() {
 
   return (
     <div className='App'>
-      <header>Kudos Board</header>
-      <div className='banner'>Welcome to the Kudos Board!!!</div>
-      <main>
-        <BoardBox/>
-      </main>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<MainPage/>} />
+          <Route path='/boards/:boardID' element={<BoardPage/>} />
+        </Routes>
+      </BrowserRouter>
       <footer>By Jack McClure 2025</footer>
     </div>
   )
