@@ -87,6 +87,9 @@ router.get('/:boardID/cards', async (req, res) => {
         const cards = await prisma.card.findMany({
             where: {
                 board_id: Number(boardID),
+            },
+            orderBy: {
+                id: "desc"
             }
         })
         res.status(200).json(cards)
