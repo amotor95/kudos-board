@@ -27,6 +27,11 @@ app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`)
 })
 
-app.get('/', cors(), (req, res) => {
-    res.send('Welcome to my app!')
+app.get('/', (req, res) => {
+    try {
+        res.send('Welcome to my app!')
+    } catch (error) {
+        console.log(error)
+        res.status(500).json(error)
+    }
 })
