@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import CardList from '../CardList/CardList'
 import AddCard from '../AddElement/AddCard'
-import { fetchCardsByBoardID, upvoteCardByID, deleteCardByID, pinCardIDByBoardID } from '../utils/api_utils'
+import { fetchCardsByBoardID, upvoteCardByID, deleteCardByID, pinCardIDByBoardID } from '../utils/apiUtils'
 
 const CardBox = ({boardID, pinnedList, triggerBoardRefresh}) => {
     const [refresh, setRefresh] = useState(false)
@@ -20,8 +20,12 @@ const CardBox = ({boardID, pinnedList, triggerBoardRefresh}) => {
     }
 
     const fetchAndProcessCardsByBoardID = async () => {
-        const newCards = await fetchCardsByBoardID(boardID)
-        processCards(newCards)
+        try {
+            const newCards = await fetchCardsByBoardID(boardID)
+            processCards(newCards)
+        } catch (error) {
+            console.error('Error fetching cards:', error)
+        }
     }
 
     useEffect( () => {
@@ -47,12 +51,15 @@ const CardBox = ({boardID, pinnedList, triggerBoardRefresh}) => {
         pinCardIDByBoardID({cardID, boardID})
         triggerBoardRefresh()
     }
-
     return(
         <div className='cardbox'>
             <AddCard triggerRefresh={triggerRefresh}/>
-            <div className='cardbox-numpinned'>Pinned Cards: {pinnedList && pinnedList.length}/6</div>
-            <CardList cards={cards} cardOrder={cardOrder} handleCardUpvote={handleCardUpvote} handleCardDelete={handleCardDelete} handlePinCard={handlePinCard} pinnedList={pinnedList}></CardList>
+            {!(cards.length === 0 || cardOrder.length === 0) ? 
+            <div>
+                <div className='cardbox-numpinned'>Pinned Cards: {pinnedList && pinnedList.length}/6</div>
+                <CardList cards={cards} cardOrder={cardOrder} handleCardUpvote={handleCardUpvote} handleCardDelete={handleCardDelete} handlePinCard={handlePinCard} pinnedList={pinnedList}></CardList>
+            </div>
+            : <div className='no-cards-found'>No cards found!</div> }
         </div>
     )
 }

@@ -18,7 +18,7 @@ router.post('/', async (req, res) => {
             }
         })
         if (!board) {
-            console.log(`BoardID: ${boardID} not found`)
+            console.error(`BoardID: ${boardID} not found`)
             res.status(404).json(`BoardID: ${boardID} not found`)
             return
         }
@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
         })
         res.status(201).json(newCard)
     } catch (error) {
-        console.log(error)
+        console.error(error)
         res.status(500).json(error)
     }
 })
@@ -49,7 +49,7 @@ router.get('/:cardID/comments', async (req, res) => {
             }
         })
         if (!card) {
-            console.log(`CardID: ${cardID} not found`)
+            console.error(`CardID: ${cardID} not found`)
             res.status(404).json(`CardID: ${cardID} not found`)
             return
         }
@@ -60,7 +60,7 @@ router.get('/:cardID/comments', async (req, res) => {
         })
         res.status(200).json(comments)
     } catch (error) {
-        console.log(error)
+        console.error(error)
         res.status(500).json(error)
     }
 })
@@ -79,11 +79,11 @@ router.delete('/:cardID', async (req, res) => {
         if (new_num_cards < intial_num_cards) {
             res.status(204).send()
         } else {
-            console.log(`CardID: ${cardID} not found`)
+            console.error(`CardID: ${cardID} not found`)
             res.status(404).send(`CardID: ${cardID} not found`)
         }
     } catch (error) {
-        console.log(error)
+        console.error(error)
         res.status(500).json(error)
     }
 })
@@ -98,7 +98,7 @@ router.patch('/:cardID', async (req, res) => {
             }
         })
         if (!card) {
-            console.log(`CardID: ${cardID} not found`)
+            console.error(`CardID: ${cardID} not found`)
             res.status(404).json(`CardID: ${cardID} not found`)
             return
         }
@@ -114,7 +114,7 @@ router.patch('/:cardID', async (req, res) => {
         })
         res.status(202).json(updatedCard)
     } catch (error) {
-        console.log(error)
+        console.error(error)
         res.status(500).json(error)
     }
 })

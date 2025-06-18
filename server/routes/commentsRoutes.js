@@ -18,7 +18,7 @@ router.post('/', async (req, res) => {
                 }
             })
             if (!card) {
-                console.log(`CardID: ${cardID} not found`)
+                console.error(`CardID: ${cardID} not found`)
                 res.status(404).json(`CardID: ${cardID} not found`)
                 return
             }
@@ -31,7 +31,7 @@ router.post('/', async (req, res) => {
         })
         res.status(201).json(newComment)
     } catch (error) {
-        console.log(error)
+        console.error(error)
         res.status(500).json(error)
     }
 })

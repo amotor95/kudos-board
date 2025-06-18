@@ -61,11 +61,11 @@ router.get('/:boardID', async (req, res) => {
         if (board) {
             res.status(200).json(board)
         } else {
-            console.log(`BoardID: ${boardID} not found`)
+            console.error(`BoardID: ${boardID} not found`)
             res.status(404).json(`BoardID: ${boardID} not found`)
         }
     } catch (error) {
-        console.log(error)
+        console.error(error)
         res.status(500).json(error)
     }
 })
@@ -80,7 +80,7 @@ router.get('/:boardID/cards', async (req, res) => {
             }
         })
         if (!board) {
-            console.log(`BoardID: ${boardID} not found`)
+            console.error(`BoardID: ${boardID} not found`)
             res.status(404).json(`BoardID: ${boardID} not found`)
             return
         }
@@ -91,7 +91,7 @@ router.get('/:boardID/cards', async (req, res) => {
         })
         res.status(200).json(cards)
     } catch (error) {
-        console.log(error)
+        console.error(error)
         res.status(500).json(error)
     }
 })
@@ -111,7 +111,7 @@ router.post('/', async (req, res) => {
         })
         res.status(201).json(newBoard)
     } catch (error) {
-        console.log(error)
+        console.error(error)
         res.status(500).json(error)
     }
 })
@@ -130,11 +130,11 @@ router.delete('/:boardID', async (req, res) => {
         if (new_num_boards < intial_num_boards) {
             res.status(204).send()
         } else {
-            console.log(`BoardID: ${boardID} not found`)
+            console.error(`BoardID: ${boardID} not found`)
             res.status(404).send(`BoardID: ${boardID} not found`)
         }
     } catch (error) {
-        console.log(error)
+        console.error(error)
         res.status(500).json(error)
     }
 })
@@ -151,7 +151,7 @@ router.patch('/:boardID/pin/:cardID', async (req, res) => {
             }
         })
         if (!board) {
-            console.log(`BoardID: ${boardID} not found`)
+            console.error(`BoardID: ${boardID} not found`)
             res.status(404).json(`BoardID: ${boardID} not found`)
             return
         }
@@ -160,7 +160,7 @@ router.patch('/:boardID/pin/:cardID', async (req, res) => {
             pinnedCardIDs = pinnedCardIDs.filter((id) => id !== cardID)
         } else {
             if (pinnedCardIDs.length >= 6) {
-                console.log(`BoardID: ${boardID} already has the max amount of pinned cards.`)
+                console.error(`BoardID: ${boardID} already has the max amount of pinned cards.`)
                 res.status(412).send(`BoardID: ${boardID} already has the max amount of pinned cards.`)
                 return;
             } else {
@@ -177,7 +177,7 @@ router.patch('/:boardID/pin/:cardID', async (req, res) => {
         })
         res.status(200).json(updatedBoard)
     } catch (error) {
-        console.log(error)
+        console.error(error)
         res.status(500).json(error)
     }
 })

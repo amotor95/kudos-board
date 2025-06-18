@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
     try {
         res.send('Welcome to my app!')
     } catch (error) {
-        console.log(error)
+        console.error(error)
         res.status(500).json(error)
     }
 })

@@ -4,7 +4,7 @@ import SearchBar from '../SearchBar/SearchBar'
 import BoardList from '../BoardList/BoardList'
 import AddBoard from '../AddElement/AddBoard'
 import FilterBar from '../FilterBar/FilterBar'
-import { fetchBoardsBySearchAndFilter } from '../utils/api_utils'
+import { fetchBoardsBySearchAndFilter } from '../utils/apiUtils'
 
 const BoardBox = () => {
     const [refresh, setRefresh] = useState(false)
@@ -26,8 +26,12 @@ const BoardBox = () => {
     }
 
     const fetchAndProcessBoards = async () => {
-        const newBoards = await fetchBoardsBySearchAndFilter(searchQuery, filter) 
-        processBoards(newBoards)
+        try {
+            const newBoards = await fetchBoardsBySearchAndFilter(searchQuery, filter) 
+            processBoards(newBoards)
+        } catch (error) {
+            console.error('Error fetching boards:', error)
+        }
     }
 
     useEffect( () => {

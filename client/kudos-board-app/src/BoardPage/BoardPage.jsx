@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
-import { fetchBoardByID  } from '../utils/api_utils'
+import { fetchBoardByID  } from '../utils/apiUtils'
 
 import './BoardPage.css'
 import AddCard from '../AddElement/AddCard'

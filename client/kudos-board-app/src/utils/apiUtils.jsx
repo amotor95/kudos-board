@@ -1,15 +1,16 @@
+const API_BASE_URL = 'http://localhost:3000/api'
+
 // Creates a board
 export const createBoard = async (board) => {
     try {
-        const response = await fetch('http://localhost:3000/api/boards', {
+        const response = await fetch(`${API_BASE_URL}/boards`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(board),
         });
-        const data = await response.json()
-        return data
+        return await response.json()
     } catch (error) {
         console.error(error)
     }
@@ -18,15 +19,14 @@ export const createBoard = async (board) => {
 // Creates a card
 export const createCard = async (card) => {
     try {
-        const response = await fetch('http://localhost:3000/api/cards', {
+        const response = await fetch(`${API_BASE_URL}/cards`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(card),
         });
-        const data = await response.json()
-        return data
+        return await response.json()
     } catch (error) {
         console.error(error)
     }
@@ -35,15 +35,14 @@ export const createCard = async (card) => {
 // Creates a comment
 export const createComment = async (comment) => {
     try {
-        const response = await fetch('http://localhost:3000/api/comments', {
+        const response = await fetch(`${API_BASE_URL}/comments`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(comment),
         });
-        const data = await response.json()
-        return data
+        return await response.json()
     } catch (error) {
         console.error(error)
     }
@@ -52,11 +51,10 @@ export const createComment = async (comment) => {
 // Fetches all boards
 export const fetchAllBoards = async () => {
     try {
-        const response = await fetch(`http://localhost:3000/api/boards/`, {
+        const response = await fetch(`${API_BASE_URL}/boards/`, {
             method: 'GET',
         });
-        const data = await response.json()
-        return data
+        return await response.json()
     } catch (error) {
         console.error(error)
     }
@@ -65,11 +63,10 @@ export const fetchAllBoards = async () => {
 // Fetches board by ID
 export const fetchBoardByID = async (boardID) => {
     try {
-        const response = await fetch(`http://localhost:3000/api/boards/${boardID}`, {
+        const response = await fetch(`${API_BASE_URL}/boards/${boardID}`, {
             method: 'GET',
         });
-        const data = await response.json()
-        return data
+        return await response.json()
     } catch (error) {
         console.error(error)
     }
@@ -78,11 +75,10 @@ export const fetchBoardByID = async (boardID) => {
 // Fetches cards by board ID
 export const fetchCardsByBoardID = async (boardID) => {
     try {
-        const response = await fetch(`http://localhost:3000/api/boards/${boardID}/cards`, {
+        const response = await fetch(`${API_BASE_URL}/boards/${boardID}/cards`, {
             method: 'GET',
         });
-        const data = await response.json()
-        return data
+        return await response.json()
     } catch (error) {
         console.error(error)
     }
@@ -91,11 +87,10 @@ export const fetchCardsByBoardID = async (boardID) => {
 // Fetches comments by card ID
 export const fetchCommentsByCardID = async (cardID) => {
     try {
-        const response = await fetch(`http://localhost:3000/api/cards/${cardID}/comments`, {
+        const response = await fetch(`${API_BASE_URL}/cards/${cardID}/comments`, {
             method: 'GET',
         });
-        const data = await response.json()
-        return data
+        return await response.json()
     } catch (error) {
         console.error(error)
     }
@@ -104,14 +99,14 @@ export const fetchCommentsByCardID = async (cardID) => {
 // Fetches all boards if no search term
 export const fetchBoardsBySearchAndFilter = async (searchQuery, filter) => {
     const boardsURLBuilder = () => {
-        let URL = `http://localhost:3000/api/boards/`
-        let hasParams = false
+        let URL = `${API_BASE_URL}/boards/`
+        let hasSearchQuery = false
         if (searchQuery) {
-            hasParams = true
+            hasSearchQuery = true
             URL += `?searchQuery=${searchQuery}`
         }
         if (!(filter === "all")) {
-            if (!hasParams) {
+            if (!hasSearchQuery) {
                 URL += `?filter=${filter}`
             } else {
                 URL += `&filter=${filter}`
@@ -124,8 +119,7 @@ export const fetchBoardsBySearchAndFilter = async (searchQuery, filter) => {
         const response = await fetch(URL, {
             method: 'GET',
         });
-        const data = await response.json()
-        return data
+        return await response.json()
     } catch (error) {
         console.error(error)
     }
@@ -134,11 +128,10 @@ export const fetchBoardsBySearchAndFilter = async (searchQuery, filter) => {
 // Deletes board by ID
 export const deleteBoardByID = async (boardID) => {
     try {
-        const response = await fetch(`http://localhost:3000/api/boards/${boardID}`, {
+        const response = await fetch(`${API_BASE_URL}/boards/${boardID}`, {
             method: 'DELETE',
         });
-        const data = response
-        return data
+        return response
     } catch (error) {
         console.error(error)
     }
@@ -147,11 +140,10 @@ export const deleteBoardByID = async (boardID) => {
 // Deletes card by ID
 export const deleteCardByID = async (cardID) => {
     try {
-        const response = await fetch(`http://localhost:3000/api/cards/${cardID}`, {
+        const response = await fetch(`${API_BASE_URL}/cards/${cardID}`, {
             method: 'DELETE',
         });
-        const data = response
-        return data
+        return response
     } catch (error) {
         console.error(error)
     }
@@ -160,11 +152,10 @@ export const deleteCardByID = async (cardID) => {
 // Upvotes card by ID
 export const upvoteCardByID = async (cardID) => {
     try {
-        const response = await fetch(`http://localhost:3000/api/cards/${cardID}`, {
+        const response = await fetch(`${API_BASE_URL}/cards/${cardID}`, {
             method: 'PATCH',
         });
-        const data = await response.json()
-        return data
+        return await response.json()
     } catch (error) {
         console.error(error)
     }
@@ -173,11 +164,10 @@ export const upvoteCardByID = async (cardID) => {
 // Pins card by ID
 export const pinCardIDByBoardID = async ({cardID, boardID}) => {
     try {
-        const response = await fetch(`http://localhost:3000/api/boards/${boardID}/pin/${cardID}`, {
+        const response = await fetch(`${API_BASE_URL}/boards/${boardID}/pin/${cardID}`, {
             method: 'PATCH',
         });
-        const data = await response.json()
-        return data
+        return await response.json()
     } catch (error) {
         console.error(error)
     }
@@ -190,8 +180,7 @@ export const fetchGIPHYBySearch = async (searchQuery) => {
         const response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${giphyApiKey}&q=${searchQuery}&limit=6`, {
             method: 'GET',
         });
-        const data = await response.json()
-        return data
+        return await response.json()
     } catch (error) {
         console.error(error)
     }

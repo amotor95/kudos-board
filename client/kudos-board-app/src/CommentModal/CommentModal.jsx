@@ -1,9 +1,9 @@
-import { createComment } from '../utils/api_utils'
+import { createComment } from '../utils/apiUtils'
 import './CommentModal.css'
 import { useState, useEffect } from 'react'
 import Modal from '../Modal/Modal'
 import CommentList from '../CommentList/CommentList'
-import { fetchCommentsByCardID } from '../utils/api_utils'
+import { fetchCommentsByCardID } from '../utils/apiUtils'
 
 const CommentModal = ({card, closeModal}) => {
     const [comments, setComments] = useState([])
@@ -12,8 +12,12 @@ const CommentModal = ({card, closeModal}) => {
     const [message, setMessage] = useState("")
     
     const fetchAndProcessCommentsByCardID = async () => {
-        const newComments = await fetchCommentsByCardID(card.id)
-        setComments(newComments)
+        try {
+            const newComments = await fetchCommentsByCardID(card.id)
+            setComments(newComments)
+        } catch (error) {
+            console.error('Error fetching comments:', error)
+        }
     }
 
     const addComment = () => {

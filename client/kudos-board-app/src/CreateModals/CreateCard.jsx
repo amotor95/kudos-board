@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import Modal from '../Modal/Modal'
 import './CreateModals.css'
-import { createCard } from '../utils/api_utils'
-import { fetchGIPHYBySearch } from '../utils/api_utils'
+import { createCard } from '../utils/apiUtils'
+import { fetchGIPHYBySearch } from '../utils/apiUtils'
 import GiphyDisplay from './GIPHY/GIPHYDisplay'
 
 const CreateCard = ({ closeModal, triggerRefresh, boardID}) => {
@@ -14,8 +14,12 @@ const CreateCard = ({ closeModal, triggerRefresh, boardID}) => {
     const [author, setAuthor] = useState("")
     
     const fetchAndProcessGIPHYBySearch = async () => {
-        const newGiphs = await fetchGIPHYBySearch(gifSearchText)
-        setSearchGifs(newGiphs.data)
+        try {
+            const newGiphs = await fetchGIPHYBySearch(gifSearchText)
+            setSearchGifs(newGiphs.data)
+        } catch (error) {
+            console.error('Error fetching GIFs:', error)
+        }
     }
 
     const addCard = () => {

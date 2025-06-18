@@ -5,10 +5,10 @@ const CardList = ({ cards, cardOrder, handleCardUpvote, handleCardDelete, handle
     return(
         <div className='cardlist'>
             {pinnedList && pinnedList.map((id) => {
-                cardOrder = cardOrder.filter((id) => !pinnedList.includes(id))
                 return <Card key={cards[id].id} card={cards[id]} handleUpvote={handleCardUpvote} handleDelete={handleCardDelete} handlePinCard={handlePinCard} pinned={true}></Card>
             })}
             {cards && cardOrder && cardOrder.map((id) => {
+                if (pinnedList && pinnedList.includes(id)) {return}
                 return <Card key={cards[id].id} card={cards[id]} handleUpvote={handleCardUpvote} handleDelete={handleCardDelete} handlePinCard={handlePinCard} pinned={false}></Card>
             })}
         </div>
