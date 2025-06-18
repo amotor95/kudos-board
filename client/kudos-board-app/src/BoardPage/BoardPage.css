@@ -1,0 +1,23 @@
+/* body, html {
+    height: 100%;
+    width: 100%;
+} */
+
+.boardpage {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.return-home-button {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    margin-left: 20px;
+    margin-top: 20px;
+}
