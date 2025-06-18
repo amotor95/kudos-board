@@ -11,20 +11,20 @@ router.use(cors())
 // Create comment
 router.post('/', async (req, res) => {
     try {
-        const { cardID, message, author } = req.body
+        const { card_id, message, author } = req.body
         const card = await prisma.card.findUnique({
                 where: {
-                    id: Number(cardID)
+                    id: Number(card_id)
                 }
             })
             if (!card) {
-                console.error(`CardID: ${cardID} not found`)
-                res.status(404).json(`CardID: ${cardID} not found`)
+                console.error(`CardID: ${card_id} not found`)
+                res.status(404).json(`CardID: ${card_id} not found`)
                 return
             }
         const newComment = await prisma.comment.create({
             data: {
-                card_id: Number(cardID),
+                card_id: Number(card_id),
                 message,
                 author,
             }

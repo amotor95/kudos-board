@@ -11,20 +11,21 @@ router.use(cors())
 // Create card
 router.post('/', async (req, res) => {
     try {
-        const { boardID, title, message, gif, author, num_upvotes } = req.body
+        const { board_id, title, message, gif, author, num_upvotes } = req.body
+        console.log(req.body)
         const board = await prisma.board.findUnique({
             where: {
-                id: Number(boardID)
+                id: Number(board_id)
             }
         })
         if (!board) {
-            console.error(`BoardID: ${boardID} not found`)
-            res.status(404).json(`BoardID: ${boardID} not found`)
+            console.error(`BoardID: ${board_id} not found`)
+            res.status(404).json(`BoardID: ${board_id} not found`)
             return
         }
         const newCard = await prisma.card.create({
             data: {
-                board_id: Number(boardID),
+                board_id: Number(board_id),
                 title,
                 message,
                 gif,
