@@ -26,25 +26,25 @@ model Board {
   category String
   author String
   image String
-  cards Card[] @onDelete(CASCADE)
+  cards Card[]
   pinnedCardIDs Int[]
 }
 
 model Card {
   id Int @id @default(autoincrement())
-  board Board @relation(fields: [board_id], references: [id])
+  board Board @relation(fields: [board_id], references: [id], onDelete: Cascade)
   board_id Int
   title String
   message String
   gif String
   num_upvotes Int
   author String
-  comments Comment[] @onDelete(CASCADE)
+  comments Comment[] 
 }
 
 model Comment {
   id Int @id @default(autoincrement())
-  card Card @relation(fields: [card_id], references: [id])
+  card Card @relation(fields: [card_id], references: [id], onDelete: Cascade)
   card_id Int
   author String
   message String
