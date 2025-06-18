@@ -3,7 +3,7 @@ import Modal from '../Modal/Modal'
 import './CreateModals.css'
 import { createCard } from '../utils/apiUtils'
 import { fetchGIPHYBySearch } from '../utils/apiUtils'
-import GiphyDisplay from './GIPHY/GIPHYDisplay'
+import GiphyDisplay from './GIPHY/GiphyDisplay'
 
 const CreateCard = ({ closeModal, triggerRefresh, boardID}) => {
     const [title, setTitle] = useState("")

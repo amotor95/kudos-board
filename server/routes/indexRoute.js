@@ -4,7 +4,7 @@ const express = require('express')
 
 const app = express()
 app.use(express.json())
-// const PORT = process.env.PORT || 3000
+const PORT = 3001
 
 const cors = require('cors')
 // Enable CORS for all routes
