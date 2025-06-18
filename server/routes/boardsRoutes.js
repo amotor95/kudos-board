@@ -61,6 +61,7 @@ router.get('/:boardID', async (req, res) => {
         if (board) {
             res.status(200).json(board)
         } else {
+            console.log(`BoardID: ${boardID} not found`)
             res.status(404).json(`BoardID: ${boardID} not found`)
         }
     } catch (error) {
@@ -79,6 +80,7 @@ router.get('/:boardID/cards', async (req, res) => {
             }
         })
         if (!board) {
+            console.log(`BoardID: ${boardID} not found`)
             res.status(404).json(`BoardID: ${boardID} not found`)
             return
         }
@@ -149,6 +151,7 @@ router.patch('/:boardID/pin/:cardID', async (req, res) => {
             }
         })
         if (!board) {
+            console.log(`BoardID: ${boardID} not found`)
             res.status(404).json(`BoardID: ${boardID} not found`)
             return
         }

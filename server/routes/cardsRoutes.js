@@ -18,6 +18,7 @@ router.post('/', async (req, res) => {
             }
         })
         if (!board) {
+            console.log(`BoardID: ${boardID} not found`)
             res.status(404).json(`BoardID: ${boardID} not found`)
             return
         }
@@ -48,6 +49,7 @@ router.get('/:cardID/comments', async (req, res) => {
             }
         })
         if (!card) {
+            console.log(`CardID: ${cardID} not found`)
             res.status(404).json(`CardID: ${cardID} not found`)
             return
         }
@@ -96,6 +98,7 @@ router.patch('/:cardID', async (req, res) => {
             }
         })
         if (!card) {
+            console.log(`CardID: ${cardID} not found`)
             res.status(404).json(`CardID: ${cardID} not found`)
             return
         }

@@ -18,6 +18,7 @@ router.post('/', async (req, res) => {
                 }
             })
             if (!card) {
+                console.log(`CardID: ${cardID} not found`)
                 res.status(404).json(`CardID: ${cardID} not found`)
                 return
             }
