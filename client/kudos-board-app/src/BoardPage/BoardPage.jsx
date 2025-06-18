@@ -25,8 +25,8 @@ const BoardPage = () => {
         fetchAndProcessBoardByID()
     }, [refresh])
 
-    const triggerRefresh = () => {
-        setRefresh(prev => !prev)
+    const triggerBoardRefresh = () => {
+        setTimeout(() => setRefresh(prev => !prev), 100)
     }
 
     const returnHome = () => {
@@ -36,7 +36,7 @@ const BoardPage = () => {
         <div className='boardpage'>
             <button className='return-home-button' onClick={() => returnHome()}>{"<"}</button>
             <h1 className='boardpage-title'>{board.title}</h1>
-            <CardBox boardID={boardID} ></CardBox>
+            <CardBox boardID={boardID} pinnedList={board.pinnedCardIDs} triggerBoardRefresh={triggerBoardRefresh}></CardBox>
         </div>
     )
 }

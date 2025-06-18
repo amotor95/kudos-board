@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Modal from './Modal'
+import Modal from '../Modal/Modal'
 import './CreateModals.css'
 import { createCard } from '../utils/api_utils'
 import { fetchGIPHYBySearch } from '../utils/api_utils'
@@ -17,6 +17,7 @@ const CreateCard = ({ closeModal, triggerRefresh, boardID}) => {
         const newGiphs = await fetchGIPHYBySearch(gifSearchText)
         setSearchGifs(newGiphs.data)
     }
+
     const addCard = () => {
         if (!title || !message || !gifURL) {
             return;
@@ -59,7 +60,7 @@ const CreateCard = ({ closeModal, triggerRefresh, boardID}) => {
             <input className='modal-input-text' value={message} onChange={(e) => setMessage(e.target.value)}></input>
 
             <h2 className='modal-input-label'>Search GIFs:</h2>
-            <input className='modal-input-text' value={gifSearchText} onChange={(e) => setGifSearchText(e.target.value)}></input>
+            <input className='modal-input-text' value={gifSearchText} onKeyDown={(e) => { if (e.key === "Enter") {searchGIPHY()}}} onChange={(e) => setGifSearchText(e.target.value)}></input>
             { searchGifs && <GiphyDisplay gifs={searchGifs} updateGIFURL={updateGIFURL}/>}
             <button className='modal-input-button' onClick={() => searchGIPHY()}>Search GIFs</button>
 

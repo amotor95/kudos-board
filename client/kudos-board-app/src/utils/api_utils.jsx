@@ -32,6 +32,23 @@ export const createCard = async (card) => {
     }
 }
 
+// Creates a comment
+export const createComment = async (comment) => {
+    try {
+        const response = await fetch('http://localhost:3000/api/comments', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(comment),
+        });
+        const data = await response.json()
+        return data
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 // Fetches all boards
 export const fetchAllBoards = async () => {
     try {
@@ -62,6 +79,19 @@ export const fetchBoardByID = async (boardID) => {
 export const fetchCardsByBoardID = async (boardID) => {
     try {
         const response = await fetch(`http://localhost:3000/api/boards/${boardID}/cards`, {
+            method: 'GET',
+        });
+        const data = await response.json()
+        return data
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+// Fetches comments by card ID
+export const fetchCommentsByCardID = async (cardID) => {
+    try {
+        const response = await fetch(`http://localhost:3000/api/cards/${cardID}/comments`, {
             method: 'GET',
         });
         const data = await response.json()
@@ -131,6 +161,19 @@ export const deleteCardByID = async (cardID) => {
 export const upvoteCardByID = async (cardID) => {
     try {
         const response = await fetch(`http://localhost:3000/api/cards/${cardID}`, {
+            method: 'PATCH',
+        });
+        const data = await response.json()
+        return data
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+// Pins card by ID
+export const pinCardIDByBoardID = async ({cardID, boardID}) => {
+    try {
+        const response = await fetch(`http://localhost:3000/api/boards/${boardID}/pin/${cardID}`, {
             method: 'PATCH',
         });
         const data = await response.json()

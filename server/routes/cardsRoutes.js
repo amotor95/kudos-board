@@ -13,7 +13,7 @@ router.post('/', cors(), async (req, res) => {
     const { board_id, title, message, gif, author, num_upvotes } = req.body
     const newCard = await prisma.card.create({
         data: {
-            board_id: parseInt(board_id),
+            board_id: Number(board_id),
             title,
             message,
             gif,
@@ -24,13 +24,24 @@ router.post('/', cors(), async (req, res) => {
     res.status(201).json(newCard)
 })
 
+// Get card's comments by cardID
+router.get('/:cardID/comments', cors(), async (req, res) => {
+    const { cardID } = req.params
+    const comments = await prisma.comment.findMany({
+        where: {
+            card_id: Number(cardID),
+        }
+    })
+    res.status(200).json(comments)
+})
+
 // Delete card by ID
 router.delete('/:cardID', cors(), async (req, res) => {
     const { cardID } = req.params
     const intial_num_cards = await prisma.card.count()
     await prisma.card.delete({
         where: {
-            id: parseInt(cardID),
+            id: Number(cardID),
         }
     })
     const new_num_cards = await prisma.card.count()
@@ -46,7 +57,7 @@ router.patch('/:cardID', cors(), async (req, res) => {
     const { cardID } = req.params
     const updatedCard = await prisma.card.update({
         where: {
-            id: parseInt(cardID),
+            id: Number(cardID),
         },
         data: {
             num_upvotes: {

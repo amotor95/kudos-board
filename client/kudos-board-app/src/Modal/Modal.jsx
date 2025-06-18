@@ -1,4 +1,4 @@
-import './CreateModals.css'
+import './Modal.css'
 
 const Modal = ({ children, closeModal }) => {
     const handleClose = (e) => {

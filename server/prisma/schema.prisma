@@ -27,6 +27,7 @@ model Board {
   author String
   image String
   cards Card[]
+  pinnedCardIDs Int[]
 }
 
 model Card {
@@ -38,12 +39,13 @@ model Card {
   gif String
   num_upvotes Int
   author String
+  comments Comment[]
 }
 
 model Comment {
   id Int @id @default(autoincrement())
+  card Card @relation(fields: [card_id], references: [id])
   card_id Int
   author String
   message String
-  image String
 }

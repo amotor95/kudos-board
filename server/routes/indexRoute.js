@@ -20,6 +20,9 @@ app.use('/api/boards', boardsRoutes)
 const cardsRoutes = require('./cardsRoutes.js')
 app.use('/api/cards', cardsRoutes)
 
+const commentsRoutes = require('./commentsRoutes.js')
+app.use('/api/comments', commentsRoutes)
+
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`)
 })

@@ -49,7 +49,7 @@ router.get('/:boardID', cors(), async (req, res) => {
     const { boardID } = req.params
     const board = await prisma.board.findUnique({
         where: {
-            id: parseInt(boardID),
+            id: Number(boardID),
         }
     })
     res.status(200).json(board)
@@ -60,7 +60,7 @@ router.get('/:boardID/cards', cors(), async (req, res) => {
     const { boardID } = req.params
     const cards = await prisma.card.findMany({
         where: {
-            board_id: parseInt(boardID),
+            board_id: Number(boardID),
         }
     })
     res.status(200).json(cards)
@@ -87,7 +87,7 @@ router.delete('/:boardID', cors(), async (req, res) => {
     const intial_num_boards = await prisma.board.count()
     await prisma.board.delete({
         where: {
-            id: parseInt(boardID),
+            id: Number(boardID),
         }
     })
     const new_num_boards = await prisma.board.count()
@@ -96,6 +96,38 @@ router.delete('/:boardID', cors(), async (req, res) => {
     } else {
         res.status(404).send(`BoardID: ${boardID} not found`)
     }
+})
+
+// Toggle card pinned status for board
+router.patch('/:boardID/pin/:cardID', cors(), async (req, res) => {
+    let { boardID, cardID } = req.params
+    boardID = Number(boardID)
+    cardID = Number(cardID)
+    const board = await prisma.board.findUnique({
+        where: {
+            id: boardID,
+        }
+    })
+    let pinnedCardIDs = board.pinnedCardIDs
+    if (pinnedCardIDs.includes(cardID)) {
+        pinnedCardIDs = pinnedCardIDs.filter((id) => id !== cardID)
+    } else {
+        if (pinnedCardIDs.length >= 6) {
+            res.status(412).send(`BoardID: ${boardID} already has the max amount of pinned cards.`)
+            return;
+        } else {
+            pinnedCardIDs.push(cardID)
+        }
+    }
+    const updatedBoard = await prisma.board.update({
+        where: {
+            id: boardID
+        },
+        data: {
+            pinnedCardIDs: [...pinnedCardIDs]
+        }
+    })
+    res.status(200).json(updatedBoard)
 })
 
 module.exports = router

@@ -35,7 +35,7 @@ const BoardBox = () => {
     }, [refresh])
 
     const triggerRefresh = () => {
-        setRefresh(prev => !prev)
+        setTimeout(() => setRefresh(prev => !prev), 100)
     }
 
     const updateSearchQuery = (query) => {

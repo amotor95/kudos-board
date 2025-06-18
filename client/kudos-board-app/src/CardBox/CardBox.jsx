@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import CardList from '../CardList/CardList'
 import AddCard from '../AddElement/AddCard'
-import { fetchCardsByBoardID, upvoteCardByID, deleteCardByID } from '../utils/api_utils'
+import { fetchCardsByBoardID, upvoteCardByID, deleteCardByID, pinCardIDByBoardID } from '../utils/api_utils'
 
-const CardBox = ({boardID}) => {
+const CardBox = ({boardID, pinnedList, triggerBoardRefresh}) => {
     const [refresh, setRefresh] = useState(false)
     const [cards, setCards] = useState({})
     const [cardOrder, setCardOrder] = useState([])
@@ -24,15 +24,13 @@ const CardBox = ({boardID}) => {
         processCards(newCards)
     }
 
-    useEffect(() => {
-        if (triggerRefresh) {
-            fetchAndProcessCardsByBoardID()
-            setRefresh(false)
-        }
+    useEffect( () => {
+        fetchAndProcessCardsByBoardID()
     }, [refresh])
 
     const triggerRefresh = () => {
-        setRefresh(prev => !prev)
+        // Set timeout because it's fetching and processing new cards before database updates
+        setTimeout(() => setRefresh(prev => !prev), 100)
     }
 
     const handleCardUpvote = (cardID) => {
@@ -45,10 +43,16 @@ const CardBox = ({boardID}) => {
         triggerRefresh()
     }
 
+    const handlePinCard = (cardID) => {
+        pinCardIDByBoardID({cardID, boardID})
+        triggerBoardRefresh()
+    }
+
     return(
         <div className='cardbox'>
             <AddCard triggerRefresh={triggerRefresh}/>
-            <CardList cards={cards} cardOrder={cardOrder} handleCardUpvote={handleCardUpvote} handleCardDelete={handleCardDelete}></CardList>
+            <div className='cardbox-numpinned'>Pinned Cards: {pinnedList && pinnedList.length}/6</div>
+            <CardList cards={cards} cardOrder={cardOrder} handleCardUpvote={handleCardUpvote} handleCardDelete={handleCardDelete} handlePinCard={handlePinCard} pinnedList={pinnedList}></CardList>
         </div>
     )
 }
