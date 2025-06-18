@@ -1,6 +1,0 @@
-.comment {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    border: 2px solid black;
-}
