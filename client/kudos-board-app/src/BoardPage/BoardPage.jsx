@@ -32,11 +32,18 @@ const BoardPage = () => {
     const returnHome = () => {
         navigate('/')
     }
+
+    let reversedPinnedCardIDs = board.pinnedCardIDs
+    
+    if (board.pinnedCardIDs) {
+        reversedPinnedCardIDs = [...board.pinnedCardIDs].reverse()
+    }
+    
     return(
         <div className='boardpage'>
             <button className='return-home-button' onClick={() => returnHome()}>{"<"}</button>
             <h1 className='boardpage-title'>{board.title}</h1>
-            <CardBox boardID={boardID} pinnedList={board.pinnedCardIDs} triggerBoardRefresh={triggerBoardRefresh}></CardBox>
+            <CardBox boardID={boardID} pinnedList={reversedPinnedCardIDs} triggerBoardRefresh={triggerBoardRefresh}></CardBox>
         </div>
     )
 }
