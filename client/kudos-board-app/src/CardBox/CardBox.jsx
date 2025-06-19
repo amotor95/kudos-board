@@ -35,7 +35,7 @@ const CardBox = ({boardID, pinnedList, triggerBoardRefresh}) => {
 
     const triggerRefresh = () => {
         // Set timeout because it's fetching and processing new cards before database updates
-        setTimeout(() => setRefresh(prev => !prev), 100)
+        setTimeout(() => setRefresh(prev => !prev), import.meta.env.VITE_TIMEOUT_DELAY_MS)
     }
 
     const handleCardUpvote = (cardID) => {
