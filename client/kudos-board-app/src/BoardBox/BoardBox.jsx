@@ -39,7 +39,7 @@ const BoardBox = () => {
     }, [refresh])
 
     const triggerRefresh = () => {
-        setTimeout(() => setRefresh(prev => !prev), 100)
+        setTimeout(() => setRefresh(prev => !prev), import.meta.env.VITE_TIMEOUT_DELAY_MS)
     }
 
     const updateSearchQuery = (query) => {
