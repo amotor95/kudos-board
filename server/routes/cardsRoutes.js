@@ -12,7 +12,6 @@ router.use(cors())
 router.post('/', async (req, res) => {
     try {
         const { board_id, title, message, gif, author, num_upvotes } = req.body
-        console.log(req.body)
         const board = await prisma.board.findUnique({
             where: {
                 id: Number(board_id)
