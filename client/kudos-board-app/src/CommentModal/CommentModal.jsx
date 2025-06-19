@@ -50,7 +50,7 @@ const CommentModal = ({card, closeModal}) => {
             <div className='commentmodal'>
                 <div className='commentmodal-card'>
                     <div className='card'>
-                <img src={card.gif} alt={`${card.title} gif`}></img>
+                <img className='commentmodal-image' src={card.gif} alt={`${card.title} gif`}></img>
                 <h3 className='card-title'>{card.title}</h3>
                 <p className='card-message'>{card.message}</p>
                 <p className='card-author'>{card.author}</p>
@@ -58,14 +58,14 @@ const CommentModal = ({card, closeModal}) => {
                 </div>
                 <div className='commentmodal-comments'>
                     <div className='commentmodal-comments-comments'>
-                        <CommentList comments={comments}></CommentList>
+                        {comments && comments.length !== 0 ? <CommentList comments={comments}></CommentList> : null}
                     </div>
                     <div className='commentmodal-comments-createcomment'>
                         <p className='comment-input-label'>Author (optional):</p>
                         <input className='comment-input' value={author} onChange={(e) => setAuthor(e.target.value)}></input>
                         <p className='comment-input-label'>Message:</p>
                         <input className='comment-input' value={message} onChange={(e) => setMessage(e.target.value)}></input>
-                        <button onClick={addComment}>Create Comment</button>
+                        <button className='comment-createcomment-button' onClick={addComment}>Create Comment</button>
                     </div>
                 </div>
             </div>

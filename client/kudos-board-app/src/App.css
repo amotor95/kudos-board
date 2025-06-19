@@ -1,11 +1,20 @@
+:root {
+    --lucida-font: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    --background-color: white;
+    --text-color: black;
+}
+
 #root {
   /* max-width: 1280px; */
   /* margin: 0 auto; */
   /* padding: 2rem; */
   height: 100%;
   text-align: center;
-  min-width: 100vw;
-  min-height: 100vh;
+  min-width: 100%;
+  min-height: 100%;
+  background-color: var(--background-color);
+  font: var(--lucida-font);
+  color: var(--text-color);
 }
 
 .App {
@@ -14,6 +23,8 @@
   height: 100%;
   width: 100%;
   align-items: center;
+  min-height: 100vh;
+  min-width: 100vw;
 }
 
 .main {

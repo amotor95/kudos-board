@@ -7,11 +7,13 @@ import NoMatch from './NoMatch/NoMatch'
 
 
 import './App.css'
+import ThemeSwitch from './ToggleSwitch/ToggleSwitch'
 
 function App() {
 
   return (
     <div className='App'>
+      <ThemeSwitch></ThemeSwitch>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<MainPage/>} />

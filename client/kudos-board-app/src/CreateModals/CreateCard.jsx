@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Modal from '../Modal/Modal'
-import './CreateModals.css'
+import './CreateBoard.css'
 import { createCard } from '../utils/apiUtils'
 import { fetchGIPHYBySearch } from '../utils/apiUtils'
 import GiphyDisplay from './GIPHY/GiphyDisplay'

@@ -13,9 +13,9 @@ const Card = ({card, handleUpvote, handleDelete, handlePinCard, pinned}) => {
     return(
         <div className='card'>
             <div className='card-pinbutton' onClick={() => handlePinCard(card.id)}>
-                {pinned ? <RiPushpinFill/> : <RiPushpinLine/>}
+                {pinned ? <RiPushpinFill className='card-pinbutton-icon' /> : <RiPushpinLine className='card-pinbutton-icon' />}
             </div>
-            <img src={card.gif} alt={`${card.title} gif`}></img>
+            <img className='card-image' src={card.gif} alt={`${card.title} gif`}></img>
             <h3 className='card-title'>{card.title}</h3>
             <p className='card-message'>{card.message}</p>
             <p className='card-author'>{card.author}</p>

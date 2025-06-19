@@ -1,0 +1,10 @@
+.cardbox {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.cardbox-numpinned {
+    margin-bottom: 30px;
+    font-size: 20px;
+}

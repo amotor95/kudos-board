@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import CardList from '../CardList/CardList'
 import AddCard from '../AddElement/AddCard'
 import { fetchCardsByBoardID, upvoteCardByID, deleteCardByID, pinCardIDByBoardID } from '../utils/apiUtils'
+import './CardBox.css'
 
 const CardBox = ({boardID, pinnedList, triggerBoardRefresh}) => {
     const [refresh, setRefresh] = useState(false)

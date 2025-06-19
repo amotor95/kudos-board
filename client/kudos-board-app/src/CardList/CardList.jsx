@@ -2,7 +2,6 @@ import './CardList.css'
 import Card from "../Card/Card";
 
 const CardList = ({ cards, cardOrder, handleCardUpvote, handleCardDelete, handlePinCard, pinnedList }) => {
-    console.log(pinnedList)
     return(
         <div className='cardlist'>
             {pinnedList && pinnedList.map((id) => {

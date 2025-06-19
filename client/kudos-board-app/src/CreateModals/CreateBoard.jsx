@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Modal from '../Modal/Modal'
-import './CreateModals.css'
+import './CreateBoard.css'
 import { createBoard } from '../utils/apiUtils'
 
 const CreateBoard = ({ closeModal, triggerRefresh }) => {

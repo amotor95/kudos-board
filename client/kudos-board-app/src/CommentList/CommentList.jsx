@@ -1,4 +1,5 @@
 import Comment from "../Comment/Comment"
+import './CommentList.css'
 
 const CommentList = ({comments}) => {
     return(
