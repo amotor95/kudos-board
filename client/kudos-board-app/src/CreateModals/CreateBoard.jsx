@@ -10,7 +10,7 @@ const CreateBoard = ({ closeModal, triggerRefresh }) => {
     const [author, setAuthor] = useState("")
 
     const addBoard = () => {
-        if (!category || !title) {
+        if (!category || !title || !image) {
             return;
         }
         const board = {
