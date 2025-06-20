@@ -18,7 +18,7 @@ function App() {
         <Routes>
           <Route path='/' element={<MainPage/>} />
           <Route path='/boards/:boardID' element={<BoardPage/>} />
-          <Route path='*' element={<NoMatch/>}></Route>
+          <Route path='*' element={<NoMatch/>} />
         </Routes>
       </BrowserRouter>
       <footer>By Jack McClure 2025</footer>

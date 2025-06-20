@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
         let prismaQuery = {}
         
         if (searchQuery) {
-            prismaQuery["where"] = { "title": {"contains": searchQuery}}
+            prismaQuery["where"] = { "title": {"contains": searchQuery, "mode": "insensitive"}}
         }
 
         switch (filter) {
