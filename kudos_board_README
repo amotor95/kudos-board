@@ -51,7 +51,7 @@ Deployed Application (**required**): [Kudos Board Deployed Site](https://kudos-b
     - [X] Title (required)
     - [X] Category (required)
     - [X] Author (optional)
-  - [X] Items listed as required above must have a value to succesffuly create a new board.
+  - [X] Items listed as required above must have a value to succesfuly create a new board.
   - [X] When the board is successfully created, it appears in the grid of boards. 
 - [X] **Delete Board**
   - [X] User can delete boards on the home page. 
@@ -139,26 +139,28 @@ Deployed Application (**required**): [Kudos Board Deployed Site](https://kudos-b
 
 `TODO://` Add the embedded URL code to your animated app walkthrough below, `ADD_EMBEDDED_CODE_HERE`. Make sure the video or gif actually renders and animates when viewing this README. Ensure your walkthrough showcases the presence and/or functionality of all features you implemented above (check them off as you film!). Pay attention to any **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS** checkboxes listed above to ensure graders see the full functionality of your website! (🚫 Remove this paragraph after adding walkthrough video)
 
-`ADD_EMBEDDED_CODE_HERE`
+`https://www.loom.com/share/32eba674f1f04313a806620629256f45`
 
 ### Reflection
 
 * Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
 
-Add your response here
+The weekly labs helped me be prepared for prop drilling, but they didn't prepare me for race conditions with fetching from the backend. The labs also didn't make me feel ready for deployment and dealing with environment variables to make it run correctly on the server.
 
 * If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
   
-Add your response here
+If I had more time, I would've added better screen size responsiveness because the GIFs made some of the cards and modal appear irregular in size. I also would've added an edit option for cards and boards, and a delete button for comments.
 
 * Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
 
-Add your response here
+Didn't demo this week. I noticed that my peers did a better job of standardizing the size of card modals and card GIFs to keep it consistent. If I redid the project, I would figure out how to responsively and uniformly size my gifs/images.
 
 ### Open-source libraries used
 
-- Add any links to open-source libraries used in your project.
+- Add any links to open-source libraries used in your project. 
+https://www.npmjs.com/package/react-toggle-dark-mode (animated light/dark mode toggle button)
 
 ### Shout out
 
 Give a shout out to somebody from your cohort that especially helped you during your project. This can be a fellow peer, instructor, TA, mentor, etc.
+Shout out to Bob for helping me think through ideas without just giving me the answer.
