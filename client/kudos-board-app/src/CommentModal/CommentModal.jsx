@@ -63,7 +63,7 @@ const CommentModal = ({card, closeModal}) => {
                     <div className='commentmodal-comments-createcomment'>
                         <p className='comment-input-label'>Author (optional):</p>
                         <input className='comment-input' value={author} onChange={(e) => setAuthor(e.target.value)}></input>
-                        <p className='comment-input-label'>Message:</p>
+                        <p className='comment-input-label'>Message (required0):</p>
                         <input className='comment-input' value={message} onChange={(e) => setMessage(e.target.value)}></input>
                         <button className='comment-createcomment-button' onClick={addComment}>Create Comment</button>
                     </div>
