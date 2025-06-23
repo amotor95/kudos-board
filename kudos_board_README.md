@@ -115,7 +115,7 @@ Deployed Application (**required**): [Kudos Board Deployed Site](https://kudos-b
   - [X] The chosen mode (light or dark) persists when navigating from home page to board pages and vice versa.
   - [X] When the user first visits the site the theme defaults to light mode.
   - [X] **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS**: To ease the grading process, please use the [color contrast checker](https://webaim.org/resources/contrastchecker/) to demonstrate to the grading team that text and background colors on your website have appropriate contrast in both light and dark mode. The Contrast Ratio should be above 4.5:1 and should have a green box surrounding it. 
-- [ ] **Pinned Cards**
+- [X] **Pinned Cards**
   - [X] Users can pin a card to the top of the board.
   - [X] A Pin button is displayed on each card.
   - [X] When the user clicks the Pin button of an unpinned card:
