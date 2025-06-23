@@ -1,6 +1,6 @@
 import './Board.css'
 import './Board'
-import { deleteBoardByID } from '../utils/api_utils'
+import { deleteBoardByID } from '../utils/apiUtils'
 import { useNavigate } from 'react-router-dom'
 
 const Board = ({board, triggerRefresh}) => {
@@ -19,7 +19,7 @@ const Board = ({board, triggerRefresh}) => {
         <div className='board'>
             <img className='board-image' src={board.image} alt={`${board.title} image`}></img>
             <p className='board-title'>{board.title}</p>
-            <p className='board-category'>{board.category.charAt(0).toUpperCase() + board.category.slice(1)}</p>
+            <p className='board-category'>{board.category}</p>
             <p className='board-author'>{board.author}</p>
             <div className='board-buttons'>
                 <button className='board-details-button' onClick={() => handleDetails()}>Details</button>

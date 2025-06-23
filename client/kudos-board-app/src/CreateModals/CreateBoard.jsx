@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import Modal from './Modal'
-import './CreateModals.css'
-import { createBoard } from '../utils/api_utils'
+import Modal from '../Modal/Modal'
+import './CreateBoard.css'
+import { createBoard } from '../utils/apiUtils'
 
 const CreateBoard = ({ closeModal, triggerRefresh }) => {
     const [title, setTitle] = useState("")
@@ -10,7 +10,7 @@ const CreateBoard = ({ closeModal, triggerRefresh }) => {
     const [author, setAuthor] = useState("")
 
     const addBoard = () => {
-        if (!category || !title) {
+        if (!category || !title || !image) {
             return;
         }
         const board = {
@@ -39,9 +39,9 @@ const CreateBoard = ({ closeModal, triggerRefresh }) => {
 
             <select className='modal-input-select' name='category-select' value={category} onChange={(e) => {setCategory(e.target.value)}}>
                 <option value=''>Select a category:</option>
-                <option value='celebration'>Celebration</option>
-                <option value='thank-you'>Thank You</option>
-                <option value='inspiration'>Inspiration</option>
+                <option value='Celebration'>Celebration</option>
+                <option value='Thank-You'>Thank You</option>
+                <option value='Inspiration'>Inspiration</option>
             </select>
 
             <h2 className='modal-input-label'>Image (required):</h2>

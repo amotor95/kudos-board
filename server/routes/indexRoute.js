@@ -4,7 +4,7 @@ const express = require('express')
 
 const app = express()
 app.use(express.json())
-const PORT = process.env.PORT || 3000
+const PORT = 3001
 
 const cors = require('cors')
 // Enable CORS for all routes
@@ -20,10 +20,18 @@ app.use('/api/boards', boardsRoutes)
 const cardsRoutes = require('./cardsRoutes.js')
 app.use('/api/cards', cardsRoutes)
 
+const commentsRoutes = require('./commentsRoutes.js')
+app.use('/api/comments', commentsRoutes)
+
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`)
 })
 
-app.get('/', cors(), (req, res) => {
-    res.send('Welcome to my app!')
+app.get('/', (req, res) => {
+    try {
+        res.send('Welcome to my app!')
+    } catch (error) {
+        console.error(error)
+        res.status(500).json(error)
+    }
 })

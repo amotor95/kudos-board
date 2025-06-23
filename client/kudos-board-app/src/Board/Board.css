@@ -1,0 +1,17 @@
+.board-image {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+}
+
+.board-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.board {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--lucida-font);
+}

@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
-import { fetchBoardByID  } from '../utils/api_utils'
+import { fetchBoardByID  } from '../utils/apiUtils'
 
 import './BoardPage.css'
 import AddCard from '../AddElement/AddCard'
@@ -25,18 +25,25 @@ const BoardPage = () => {
         fetchAndProcessBoardByID()
     }, [refresh])
 
-    const triggerRefresh = () => {
-        setRefresh(prev => !prev)
+    const triggerBoardRefresh = () => {
+        setTimeout(() => setRefresh(prev => !prev), import.meta.env.VITE_TIMEOUT_DELAY_MS)
     }
 
     const returnHome = () => {
         navigate('/')
     }
+
+    let reversedPinnedCardIDs = board.pinnedCardIDs
+    
+    if (board.pinnedCardIDs) {
+        reversedPinnedCardIDs = [...board.pinnedCardIDs].reverse()
+    }
+    
     return(
         <div className='boardpage'>
             <button className='return-home-button' onClick={() => returnHome()}>{"<"}</button>
             <h1 className='boardpage-title'>{board.title}</h1>
-            <CardBox boardID={boardID} ></CardBox>
+            <CardBox boardID={boardID} pinnedList={reversedPinnedCardIDs} triggerBoardRefresh={triggerBoardRefresh}></CardBox>
         </div>
     )
 }

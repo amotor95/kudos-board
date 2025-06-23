@@ -1,0 +1,31 @@
+.commentmodal-comments-createcomment {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-createcomment-button {
+    margin-top: 25px;
+}
+
+.commentmodal {
+    max-height: 90vh;
+    overflow-y: auto;
+    min-width: 100%;
+    margin-top: 20px;
+}
+
+.card-title {
+    font-size: 30px;
+}
+
+.card-message {
+    font-size: 15px;
+}
+
+.card-author {
+    font-size: 20px;
+}
+.commentmodal-image {
+    /* object-fit: contain; */
+    /* max-height: 20vh; */
+}

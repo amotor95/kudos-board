@@ -1,12 +1,15 @@
-import { useState, useEffect } from 'react'
+import './CardList.css'
 import Card from "../Card/Card";
-import { fetchCardsByBoardID } from '../utils/api_utils';
 
-const CardList = ({ cards, cardOrder, handleCardUpvote, handleCardDelete }) => {
+const CardList = ({ cards, cardOrder, handleCardUpvote, handleCardDelete, handlePinCard, pinnedList }) => {
     return(
         <div className='cardlist'>
+            {pinnedList && pinnedList.map((id) => {
+                return <Card key={cards[id].id} card={cards[id]} handleUpvote={handleCardUpvote} handleDelete={handleCardDelete} handlePinCard={handlePinCard} pinned={true}></Card>
+            })}
             {cards && cardOrder && cardOrder.map((id) => {
-                return <Card key={cards[id].id} card={cards[id]} handleUpvote={handleCardUpvote} handleDelete={handleCardDelete}></Card>
+                if (pinnedList && pinnedList.includes(id)) {return}
+                return <Card key={cards[id].id} card={cards[id]} handleUpvote={handleCardUpvote} handleDelete={handleCardDelete} handlePinCard={handlePinCard} pinned={false}></Card>
             })}
         </div>
     )

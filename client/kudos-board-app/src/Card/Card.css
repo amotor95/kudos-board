@@ -1,0 +1,34 @@
+.card-pinbutton {
+
+}
+
+.card-pinbutton-icon {
+    height: 30px;
+    width: 30px;
+}
+
+.card-pinbutton:hover {
+    cursor: pointer;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.card-image {
+    object-fit: contain;
+    height: 200px;
+    width: 200px;
+}
+
+.card-commentmodal-button {
+    margin-bottom: 20px;
+}
+
+.card-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}

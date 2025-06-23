@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import Modal from './Modal'
-import './CreateModals.css'
-import { createCard } from '../utils/api_utils'
-import { fetchGIPHYBySearch } from '../utils/api_utils'
-import GiphyDisplay from './GIPHY/GIPHYDisplay'
+import Modal from '../Modal/Modal'
+import './CreateBoard.css'
+import { createCard } from '../utils/apiUtils'
+import { fetchGIPHYBySearch } from '../utils/apiUtils'
+import GiphyDisplay from './GIPHY/GiphyDisplay'
 
 const CreateCard = ({ closeModal, triggerRefresh, boardID}) => {
     const [title, setTitle] = useState("")
@@ -14,9 +14,14 @@ const CreateCard = ({ closeModal, triggerRefresh, boardID}) => {
     const [author, setAuthor] = useState("")
     
     const fetchAndProcessGIPHYBySearch = async () => {
-        const newGiphs = await fetchGIPHYBySearch(gifSearchText)
-        setSearchGifs(newGiphs.data)
+        try {
+            const newGiphs = await fetchGIPHYBySearch(gifSearchText)
+            setSearchGifs(newGiphs.data)
+        } catch (error) {
+            console.error('Error fetching GIFs:', error)
+        }
     }
+
     const addCard = () => {
         if (!title || !message || !gifURL) {
             return;
@@ -59,7 +64,7 @@ const CreateCard = ({ closeModal, triggerRefresh, boardID}) => {
             <input className='modal-input-text' value={message} onChange={(e) => setMessage(e.target.value)}></input>
 
             <h2 className='modal-input-label'>Search GIFs:</h2>
-            <input className='modal-input-text' value={gifSearchText} onChange={(e) => setGifSearchText(e.target.value)}></input>
+            <input className='modal-input-text' value={gifSearchText} onKeyDown={(e) => { if (e.key === "Enter") {searchGIPHY()}}} onChange={(e) => setGifSearchText(e.target.value)}></input>
             { searchGifs && <GiphyDisplay gifs={searchGifs} updateGIFURL={updateGIFURL}/>}
             <button className='modal-input-button' onClick={() => searchGIPHY()}>Search GIFs</button>
 

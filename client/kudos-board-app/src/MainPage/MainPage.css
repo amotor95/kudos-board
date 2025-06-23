@@ -7,3 +7,16 @@
 .main {
     width: 100%;
 }
+
+header {
+    font: var(--lucida-font);
+    color: var(--text-color);
+    font-size: 50px;
+}
+
+.banner {
+    font: var(--lucida-font);
+    color: var(--text-color);
+    font-size: 30px;
+    margin: 15px;
+}

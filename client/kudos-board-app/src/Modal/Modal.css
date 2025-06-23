@@ -10,66 +10,46 @@
 }
 
 .modal-content {
-    background-color: #888;
-    margin: 250px auto;
-    border: 1px solid black;
-    width: 40%;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--lucida-font);
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid var(--text-color);
+    width: 70%;
+    min-width: 60vw;
     max-width: 100%;
-    height: 50%;
+    /* height: 53%; */
     position: relative;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+    padding: 30px;
     /* overflow: auto; */
-}
-
-.modal-content > * {
-    width: 100%;
 }
 
 .modal-close-button {
     position: absolute;
+    background-color: var(--background-color);
     right: 0;
     top: 0;
     width: 30px;
+    height: 30px;
     border: none;
     margin-top: 10px;
     margin-right: 10px;
     border-radius: 9px;
-    background-color: red;
-    color: #888;
+    color: var(--text-color);
     transition: 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
 .modal-close-button:hover {
-    scale: 125%;
-}
-
-.modal-title {
-    font-size: 30px;
-    text-align: center;
-}
-
-.modal-input-label {
-    font-size: 20px;
-    /* margin-left: 12%; */
-}
-
-.modal-input-text {
-    width: 80%;
-    height: 25px;
-}
-
-.modal-input-select {
-    width: 80%;
-    height: 30px;
-}
-
-.modal-input-button {
-    margin-top: 60px;
-    width: 80%;
-    height: 50px;
+    scale: 105%;
+    background-color: red;
 }

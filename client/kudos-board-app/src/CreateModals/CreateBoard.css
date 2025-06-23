@@ -1,0 +1,27 @@
+
+.modal-title {
+    font-size: 30px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.modal-input-label {
+    font-size: 20px;
+    /* margin-left: 12%; */
+}
+
+.modal-input-text {
+    width: 80%;
+    height: 25px;
+}
+
+.modal-input-select {
+    width: 80%;
+    height: 30px;
+}
+
+.modal-input-button {
+    margin-top: 60px;
+    width: 80%;
+    height: 50px;
+}

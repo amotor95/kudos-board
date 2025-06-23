@@ -1,0 +1,11 @@
+.comment {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border: 2px solid var(--text-color);
+    border-radius: 9px;
+}
+
+.comment-author {
+    font-size: 20px;
+}
