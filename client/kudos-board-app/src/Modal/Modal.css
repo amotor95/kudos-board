@@ -31,6 +31,7 @@
     padding: 30px;
     /* overflow: auto; */
     overflow: auto;
+    max-height: 80vh;
 }
 
 .modal-close-button {
