@@ -38,6 +38,7 @@ app.get('/', (req, res) => {
 
 app.post('/ebay', (req, res) => {
     try {
+        console.log("Ebay endpoint: ")
         console.log(req)
         res.status(200).send()
     } catch (error) {
