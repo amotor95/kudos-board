@@ -41,6 +41,7 @@ app.get('/ebay', (req, res) => {
         const crypto = require('crypto')
         console.log("Ebay get endpoint: ")
         const { challenge_code } = req.params
+        console.log(req.params)
         const challengeCode = challenge_code
         const verificationToken = "879878121345134523452345234523452354"
         const endpoint = "https://kudos-board-backend-8gm7.onrender.com/ebay"
