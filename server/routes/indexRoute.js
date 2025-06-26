@@ -39,19 +39,19 @@ app.get('/', (req, res) => {
 app.get('/ebay', (req, res) => {
     try {
         console.log("Ebay get endpoint: ")
-        console.log(req)
-        res.status(200).send()
-    } catch (error) {
-        console.error(error)
-        res.status(500).json(error)
-    }
-})
-
-app.post('/ebay', (req, res) => {
-    try {
-        console.log("Ebay post endpoint: ")
-        console.log(req)
-        res.status(200).send()
+        const { challenge_code } = req.params
+        const challengeCode = challenge_code
+        const verificationToken = "879878121345134523452345234523452354"
+        const endpoint = "https://kudos-board-backend-8gm7.onrender.com/ebay"
+        const hash = createHash('sha256');
+        hash.update(challengeCode);
+        hash.update(verificationToken);
+        hash.update(endpoint);
+        const responseHash = hash.digest('hex');
+        console.log(new Buffer.from(responseHash).toString());
+        res.status(200).json({
+            'challengedResponse': responseHash,
+        })
     } catch (error) {
         console.error(error)
         res.status(500).json(error)
