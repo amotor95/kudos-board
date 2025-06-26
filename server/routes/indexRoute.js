@@ -38,12 +38,13 @@ app.get('/', (req, res) => {
 
 app.get('/ebay', (req, res) => {
     try {
+        const crypto = require('crypto')
         console.log("Ebay get endpoint: ")
         const { challenge_code } = req.params
         const challengeCode = challenge_code
         const verificationToken = "879878121345134523452345234523452354"
         const endpoint = "https://kudos-board-backend-8gm7.onrender.com/ebay"
-        const hash = createHash('sha256');
+        const hash = crypto.createHash('sha256');
         hash.update(challengeCode);
         hash.update(verificationToken);
         hash.update(endpoint);
