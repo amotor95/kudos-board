@@ -35,3 +35,13 @@ app.get('/', (req, res) => {
         res.status(500).json(error)
     }
 })
+
+app.post('/ebay', (req, res) => {
+    try {
+        console.log(req)
+        res.status(200).send()
+    } catch (error) {
+        console.error(error)
+        res.status(500).json(error)
+    }
+})
