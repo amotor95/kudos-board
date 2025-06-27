@@ -39,7 +39,7 @@ app.get('/', (req, res) => {
 app.get('/ebay', (req, res) => {
     try {
         console.log("Ebay get endpoint: ")
-        if (req.query) {
+        if (Object.keys(req.query).length === 0) {
             const crypto = require('crypto')
             console.log(req.query)
             const { challenge_code } = req.query
