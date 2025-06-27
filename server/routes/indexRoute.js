@@ -38,23 +38,26 @@ app.get('/', (req, res) => {
 
 app.get('/ebay', (req, res) => {
     try {
-        const crypto = require('crypto')
         console.log("Ebay get endpoint: ")
-        console.log(req)
-        console.log(req.query)
-        const { challenge_code } = req.query
-        const challengeCode = challenge_code
-        const verificationToken = "879878121345134523452345234523452354"
-        const endpoint = "https://kudos-board-backend-8gm7.onrender.com/ebay"
-        const hash = crypto.createHash('sha256');
-        hash.update(challengeCode);
-        hash.update(verificationToken);
-        hash.update(endpoint);
-        const responseHash = hash.digest('hex');
-        console.log(new Buffer.from(responseHash).toString());
-        res.status(200).json({
-            'challengeResponse': responseHash,
-        })
+        if (req.query) {
+            const crypto = require('crypto')
+            console.log(req.query)
+            const { challenge_code } = req.query
+            const challengeCode = challenge_code
+            const verificationToken = "879878121345134523452345234523452354"
+            const endpoint = "https://kudos-board-backend-8gm7.onrender.com/ebay"
+            const hash = crypto.createHash('sha256');
+            hash.update(challengeCode);
+            hash.update(verificationToken);
+            hash.update(endpoint);
+            const responseHash = hash.digest('hex');
+            console.log(new Buffer.from(responseHash).toString());
+            res.status(200).json({
+                'challengeResponse': responseHash,
+            })
+        } else {
+            res.status(200).send()
+        }
     } catch (error) {
         console.error(error)
         res.status(500).json(error)
