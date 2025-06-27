@@ -53,7 +53,7 @@ app.get('/ebay', (req, res) => {
         const responseHash = hash.digest('hex');
         console.log(new Buffer.from(responseHash).toString());
         res.status(200).json({
-            'challengedResponse': responseHash,
+            'challengeResponse': responseHash,
         })
     } catch (error) {
         console.error(error)
